@@ -4,6 +4,7 @@ from ...schemas import fortune_schema
 from ...schemas import oaths_and_respects_schema
 from ...schemas import animal_companion_schema
 from datetime import datetime
+
 def test_empty_constructor():
     character_test = character_schema.CharacterSchema()
     assert character_test._id == None
