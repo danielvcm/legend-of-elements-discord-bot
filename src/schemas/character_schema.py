@@ -3,15 +3,15 @@ from . import fortune_schema
 from . import oaths_and_respects_schema
 from . import animal_companion_schema
 class CharacterSchema:
-    def __init__(self,_id = None, userId = None, guildId = None, selected = True, playbookClass = None, name = None, chi = None, backstory = [],
+    def __init__(self,_id = None, user_id = None, guild_id = None, selected = True, playbook_class = None, name = None, chi = None, backstory = [],
         stats = None, fortune = None, oaths_and_respects = None, tags = None, moves = [], basic_moves_modifiers = [], look = [],
         chakras = [], gears = [], notes = [], other_moves = [], materials = [], animal_companions = [], finished = False, created_at = None,
         updated_at = None, deleted_at = None):
         self._id = _id
-        self.userId = userId
-        self.guildId = guildId
+        self.user_id = user_id
+        self.guild_id = guild_id
         self.selected = selected
-        self.playbookClass = playbookClass
+        self.playbook_class = playbook_class
         self.name = name
         self.chi = chi
         self.backstory = backstory
@@ -44,10 +44,10 @@ class CharacterSchema:
     
     def to_dict(self):
         return{
-            'userId': self.userId,
-            'guildId': self.guildId,
+            'user_id': self.user_id,
+            'guild_id': self.guild_id,
             'selected': self.selected,
-            'playbookClass': self.playbookClass,
+            'playbook_class': self.playbook_class,
             'name': self.name,
             'chi': self.chi,
             'backstory': self.backstory,
@@ -74,14 +74,14 @@ def from_dict(character_dict):
     character = CharacterSchema()
     if '_id' in character_dict:
         character._id = character_dict['_id']
-    if 'userId' in character_dict:
-        character.userId = character_dict['userId']
-    if 'guildId' in character_dict:
-        character.guildId = character_dict['guildId']
+    if 'user_id' in character_dict:
+        character.user_id = character_dict['user_id']
+    if 'guild_id' in character_dict:
+        character.guild_id = character_dict['guild_id']
     if 'selected' in character_dict:
         character.selected = character_dict['selected']
-    if 'playbookClass' in character_dict:
-        character.playbookClass = character_dict['playbookClass']
+    if 'playbook_class' in character_dict:
+        character.playbook_class = character_dict['playbook_class']
     if 'name' in character_dict:
         character.name = character_dict['name']
     if 'chi' in character_dict:
@@ -93,7 +93,7 @@ def from_dict(character_dict):
     if 'fortune' in character_dict:
         character.fortune = fortune_schema.from_dict(character_dict['fortune'])
     if 'oaths_and_respects' in character_dict:
-        character.oaths_and_respects = character_dict['oaths_and_respects']
+        character.oaths_and_respects = oaths_and_respects_schema.from_dict(character_dict['oaths_and_respects'])
     if 'tags' in character_dict:
         character.tags = character_dict['tags']
     if 'moves' in character_dict:

@@ -8,10 +8,10 @@ from datetime import datetime
 def test_empty_constructor():
     character_test = character_schema.CharacterSchema()
     assert character_test._id == None
-    assert character_test.userId == None
-    assert character_test.guildId == None
+    assert character_test.user_id == None
+    assert character_test.guild_id == None
     assert character_test.selected == True
-    assert character_test.playbookClass == None
+    assert character_test.playbook_class == None
     assert character_test.name == None
     assert character_test.chi == None
     assert character_test.backstory == []
@@ -46,16 +46,16 @@ def test_filled_constructor():
     oaths_test = oaths_and_respects_schema.OathsAndRespectsSchema(swear=['to love you'],respect=['my mom'], respected=['my dog'])
     animal_test = animal_companion_schema.AnimalCompanionSchema(name='Momo',species='Flying Lemour',animal=2,moves=['fly'])
     test_time = datetime.now()
-    character_test = character_schema.CharacterSchema(_id='1ab2', userId='2ba1', guildId='2bc3', selected=False, playbookClass='Airshaper',
+    character_test = character_schema.CharacterSchema(_id='1ab2', user_id='2ba1', guild_id='2bc3', selected=False, playbook_class='Airshaper',
                     name='Aang', chi=5, backstory=['100 years frozen'], stats=stats_test, fortune=fortune_test, oaths_and_respects=oaths_test,
                     tags='mild',moves=['airshape'],basic_moves_modifiers=[{'attack':['+2','Nat']}],look=['bald','tatoos'],
                     chakras=['dont kill people'],gears=['staff'],notes=['avatar'],other_moves=['earthshaping'],materials=[2],
                     animal_companions=[animal_test],finished=True,created_at=test_time,updated_at=test_time,deleted_at=test_time)
     assert character_test._id == '1ab2'
-    assert character_test.userId == '2ba1'
-    assert character_test.guildId == '2bc3'
+    assert character_test.user_id == '2ba1'
+    assert character_test.guild_id == '2bc3'
     assert character_test.selected == False
-    assert character_test.playbookClass == 'Airshaper'
+    assert character_test.playbook_class == 'Airshaper'
     assert character_test.name == 'Aang'
     assert character_test.chi == 5
     assert character_test.backstory == ['100 years frozen']
@@ -80,10 +80,10 @@ def test_filled_constructor():
 def test_to_dict_with_empty_constructor():
     character_test = character_schema.CharacterSchema()
     test_dict = character_test.to_dict()
-    assert test_dict['userId'] == None
-    assert test_dict['guildId'] == None
+    assert test_dict['user_id'] == None
+    assert test_dict['guild_id'] == None
     assert test_dict['selected'] == True
-    assert test_dict['playbookClass'] == None
+    assert test_dict['playbook_class'] == None
     assert test_dict['name'] == None
     assert test_dict['chi'] == None
     assert test_dict['backstory'] == []
@@ -119,16 +119,16 @@ def test_to_dict_with_filled_dict():
     oaths_test = oaths_and_respects_schema.OathsAndRespectsSchema(swear=['to love you'],respect=['my mom'], respected=['my dog'])
     animal_test = animal_companion_schema.AnimalCompanionSchema(name='Momo',species='Flying Lemour',animal=2,moves=['fly'])
     test_time = datetime.now()
-    character_test = character_schema.CharacterSchema(_id='1ab2', userId='2ba1', guildId='2bc3', selected=False, playbookClass='Airshaper',
+    character_test = character_schema.CharacterSchema(_id='1ab2', user_id='2ba1', guild_id='2bc3', selected=False, playbook_class='Airshaper',
                     name='Aang', chi=5, backstory=['100 years frozen'], stats=stats_test, fortune=fortune_test, oaths_and_respects=oaths_test,
                     tags='mild',moves=['airshape'],basic_moves_modifiers=[{'attack':['+2','Nat']}],look=['bald','tatoos'],
                     chakras=['dont kill people'],gears=['staff'],notes=['avatar'],other_moves=['earthshaping'],materials=[2],
                     animal_companions=[animal_test],finished=True,created_at=test_time,updated_at=test_time,deleted_at=test_time)
     test_dict = character_test.to_dict()
-    assert test_dict['userId'] == '2ba1'
-    assert test_dict['guildId'] == '2bc3'
+    assert test_dict['user_id'] == '2ba1'
+    assert test_dict['guild_id'] == '2bc3'
     assert test_dict['selected'] == False
-    assert test_dict['playbookClass'] == 'Airshaper'
+    assert test_dict['playbook_class'] == 'Airshaper'
     assert test_dict['name'] == 'Aang'
     assert test_dict['chi'] == 5
     assert test_dict['backstory'] == ['100 years frozen']
@@ -154,10 +154,10 @@ def test_from_dict_with_empty_dict():
     test_dict = {}
     character_test = character_schema.from_dict(test_dict)
     assert character_test._id == None
-    assert character_test.userId == None
-    assert character_test.guildId == None
+    assert character_test.user_id == None
+    assert character_test.guild_id == None
     assert character_test.selected == True
-    assert character_test.playbookClass == None
+    assert character_test.playbook_class == None
     assert character_test.name == None
     assert character_test.chi == None
     assert character_test.backstory == []
@@ -194,16 +194,16 @@ def test_from_dict_with_filled_dict():
     test_time = datetime.now()
     test_dict = {
         '_id': '1ab2',
-        'userId': '2ba1',
-        'guildId': '2bc3',
+        'user_id': '2ba1',
+        'guild_id': '2bc3',
         'selected': False,
-        'playbookClass': 'Airshaper',
+        'playbook_class': 'Airshaper',
         'name': 'Aang',
         'chi': 5,
         'backstory': ['100 years frozen'],
         'stats': stats_test.to_dict(),
         'fortune': fortune_test.to_dict(),
-        'oaths_and_respects': oaths_test,
+        'oaths_and_respects': oaths_test.to_dict(),
         'tags': 'mild',
         'moves': ['airshape'],
         'basic_moves_modifiers': [{'attack':['+2','Nat']}],
@@ -221,10 +221,10 @@ def test_from_dict_with_filled_dict():
         }
     character_test = character_schema.from_dict(test_dict)
     assert character_test._id == '1ab2'
-    assert character_test.userId == '2ba1'
-    assert character_test.guildId == '2bc3'
+    assert character_test.user_id == '2ba1'
+    assert character_test.guild_id == '2bc3'
     assert character_test.selected == False
-    assert character_test.playbookClass == 'Airshaper'
+    assert character_test.playbook_class == 'Airshaper'
     assert character_test.name == 'Aang'
     assert character_test.chi == 5
     assert character_test.backstory == ['100 years frozen']
